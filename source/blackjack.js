@@ -7,7 +7,7 @@ for (let i = 0; i < suits.length; i++) {
     //add a card to the deck
     deck.push({
       suit: suits[i],
-      points: j + 1,
+      point: j + 1,
       card_number: numbers[j]
     });
   }
@@ -47,8 +47,8 @@ $(document).ready(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
     dealerHand = [card1, card2];
-    var img1 = generateUrl(card1);
-    var img2 = generateUrl(card2);
+    var img1 = getCardImageUrl(card1);
+    var img2 = getCardImageUrl(card2);
     //$('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
     $('#dealer-hand').append(`<img src='${img1}'>`);
       $('#dealer-hand').append(`<img src='${img2}'>`);
@@ -65,8 +65,8 @@ $(document).ready(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
     playerHand = [card1, card2];
-    var img1 = generateUrl(card1);
-    var img2 = generateUrl(card2);
+    var img1 = getCardImageUrl(card1);
+    var img2 = getCardImageUrl(card2);
     //$('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
     $('#player-hand-hand').append(`<img src='${img1}'>`);
       $('#player-hand').append(`<img src='${img2}'>`);
