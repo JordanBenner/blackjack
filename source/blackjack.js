@@ -98,7 +98,7 @@ $(document).ready(function() {
 
   })
 
-  $('#stand-button').click(function() {
+  $('#stand-button').click(function() 
 
   });
 
