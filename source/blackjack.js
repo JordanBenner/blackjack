@@ -74,11 +74,10 @@ $(document).ready(function() {
     dealerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
-    //$('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
+
     $('#dealer-hand').append(`<img src='${img1}'>`);
     $('#dealer-hand').append(`<img src='${img2}'>`);
-    // console.log('#player-hand', playerHand);
-    // console.log('#dealer-hand', dealerHand);
+
   });
 
   $('#hit-button').click(function() {
@@ -92,13 +91,13 @@ $(document).ready(function() {
     playerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
-    //$('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
+    
     $('#player-hand-hand').append(`<img src='${img1}'>`);
     $('#player-hand').append(`<img src='${img2}'>`);
 
   })
 
-  $('#stand-button').click(function() 
+  $('#stand-button').click(function() {
 
   });
 
