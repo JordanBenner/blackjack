@@ -2,8 +2,10 @@
 
 var numbers = ['Ace', '2','3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 var suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
-var cards = [];
-var deck = [];
+
+var deck = [
+  {}
+];
 
 for (let i=0; i < suits.length; i++) {
   for (let j=0; j < numbers.length; j++) {
@@ -28,12 +30,12 @@ $(document).ready(function(){
 
   $('#deal-button').click(function(){
     var card = deck.pop();
-    $('#dealer-hand').append("<img src='images/'" + card.card_number + "'_of_'" + card.suit +"'.png'>");
+    $('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
   });
 
   $('#hit-button').click(function(){
     var card = deck.pop();
-    $('#player-hand').append("<img src='images/'" + card.card_number + "'_of_'" + card.suit +"'.png'>");
+    $('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
   });
 
 
