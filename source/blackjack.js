@@ -27,10 +27,31 @@ deck = shuffleArray(deck);
 
 $(document).ready(function() {
 
-  $('#deal-button').click(function() {
-    var card = deck.pop();
-    $('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
+  function getCardImageUrl(card) {
+    var cardName;
+    if (card.point === 1) {
+      cardName = 'ace';
+    } else if (card.point === 11) {
+      cardName = 'jack';
+    } else if (card.point === 12) {
+      cardName = 'queen';
+    } else if (card.point === 13) {
+      cardName = 'king';
+    } else {
+      cardName = card.point;
+    }
+    return 'images/' + cardName + '_of_' + card.suit + '.png';
+  }
 
+  $('#deal-button').click(function() {
+    var card1 = deck.pop();
+    var card2 = deck.pop();
+    dealerHand = [card1, card2];
+    var img1 = generateUrl(card1);
+    var img2 = generateUrl(card2);
+    //$('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
+    $('#dealer-hand').append(`<img src='${img1}'>`);
+      $('#dealer-hand').append(`<img src='${img2}'>`);
     // console.log('#player-hand', playerHand);
     // console.log('#dealer-hand', dealerHand);
   });
@@ -40,9 +61,22 @@ $(document).ready(function() {
     $('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
   });
 
+  $('#player-hand').click(function(){
+    var card1 = deck.pop();
+    var card2 = deck.pop();
+    playerHand = [card1, card2];
+    var img1 = generateUrl(card1);
+    var img2 = generateUrl(card2);
+    //$('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
+    $('#player-hand-hand').append(`<img src='${img1}'>`);
+      $('#player-hand').append(`<img src='${img2}'>`);
+
+  })
+
   $('#stand-button').click(function() {
 
   });
+
 
 
 });
