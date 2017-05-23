@@ -1,5 +1,41 @@
+
+
+var numbers = ['Ace', '2','3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
+var suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
+var cards = [];
+var deck = [];
+
+for (let i=0; i < suits.length; i++) {
+  for (let j=0; j < numbers.length; j++) {
+    //add a card to the deck
+    deck.push({suit: suits[i], points: j + 1, card_number: numbers[j]});
+  }
+}
+
+function shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+deck = shuffleArray(deck);
+
 $(document).ready(function(){
-  $('#dealer-hand').append
+
+  $('#deal-button').click(function(){
+    $(deck).append(images)
+    //$('cards').html('');
+    var card1 = deck.pop();
+    var card2 = deck.pop();
+    return img src = 'images/' + number + '_of_' + suits +'.png';
+    console.log('number', 'suits');
+
+  }
+
 
 
 });
