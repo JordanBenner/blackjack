@@ -2,7 +2,10 @@
 
 var numbers = ['Ace', '2','3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 var suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
-
+var aceOfSpades = {point: 1, suit: 'spades'};
+var kingOfHearts = {point: 13, suit: 'hearts' };
+var queenOfDimonds = {point: 12, suit: 'dimonds'};
+var jackOfClubs = {point: 11, suit: 'clubs'};
 var deck = [
   {}
 ];
