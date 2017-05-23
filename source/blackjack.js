@@ -43,6 +43,31 @@ $(document).ready(function() {
     return 'images/' + cardName + '_of_' + card.suit + '.png';
   }
 
+  function calculatePoints(cards) {
+    cards = cards.slice(0);
+    cards.sort(function(a, b) {
+      return b.point - a.point;
+    });
+    return cards.reduce(function(sum, card) {
+      var point = card.point;
+      if (point > 10) {
+        point = 10;
+      }
+      if (point === 1 && sum < 11) {
+        point = 11;
+      }
+      return sum + point;
+    }, 0);
+  }
+
+  function updateScore() {
+    var dealerPoints = calculatePoints(dealerHand);
+    $('#dealer-points').text(dealerPoints);
+    var playerPoints = calculatePoints(playerHand);
+    $('#player-points').text(playerPoints);
+  }
+
+
   $('#deal-button').click(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
@@ -51,7 +76,7 @@ $(document).ready(function() {
     var img2 = getCardImageUrl(card2);
     //$('#dealer-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
     $('#dealer-hand').append(`<img src='${img1}'>`);
-      $('#dealer-hand').append(`<img src='${img2}'>`);
+    $('#dealer-hand').append(`<img src='${img2}'>`);
     // console.log('#player-hand', playerHand);
     // console.log('#dealer-hand', dealerHand);
   });
@@ -61,7 +86,7 @@ $(document).ready(function() {
     $('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
   });
 
-  $('#player-hand').click(function(){
+  $('#player-hand').click(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
     playerHand = [card1, card2];
@@ -69,7 +94,7 @@ $(document).ready(function() {
     var img2 = getCardImageUrl(card2);
     //$('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
     $('#player-hand-hand').append(`<img src='${img1}'>`);
-      $('#player-hand').append(`<img src='${img2}'>`);
+    $('#player-hand').append(`<img src='${img2}'>`);
 
   })
 
