@@ -27,15 +27,14 @@ deck = shuffleArray(deck);
 $(document).ready(function(){
 
   $('#deal-button').click(function(){
-    $(deck).append(images)
-    //$('cards').html('');
-    var card1 = deck.pop();
-    var card2 = deck.pop();
-    return img src = 'images/' + number + '_of_' + suits +'.png';
-    console.log('number', 'suits');
+    var card = deck.pop();
+    $('#dealer-hand').append("<img src='images/'" + card.card_number + "'_of_'" + card.suit +"'.png'>");
+  });
 
-  }
+  $('#hit-button').click(function(){
+    var card = deck.pop();
+    $('#player-hand').append("<img src='images/'" + card.card_number + "'_of_'" + card.suit +"'.png'>");
+  });
 
 
-
-});
+  });
