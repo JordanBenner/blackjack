@@ -101,7 +101,7 @@ $(document).ready(function() {
     if (calculatePoints(dealerHand) > 21) {
       $('#messages').text('Dealer Busts, You Win!')
     }
-    
+
 
     $('#dealer-hand').append(`<img src='${img1}'>`);
     $('#dealer-hand').append(`<img src='${img2}'>`);
