@@ -49,7 +49,7 @@ $(document).ready(function() {
 
   function calculatePoints(cards) {
     var total_points = 0;
-    cards.forEach(function (card) {
+    cards.forEach(function(card) {
       if (card.point > 10) {
         total_points += 10;
       } else if (card.point === 1 && total_points < 11) {
@@ -62,6 +62,12 @@ $(document).ready(function() {
     return total_points;
   }
 
+  function gameOver() {
+    $('#hit-button').hide();
+    $('#stand-button').hide();
+    $('#play-again').show();
+  }
+
   function updateScore() {
     var dealerPoints = calculatePoints(dealerHand);
     $('#dealer-points').text(dealerPoints);
@@ -70,15 +76,18 @@ $(document).ready(function() {
 
     if (playerPoints === 21) {
       $('#messages').text('You Win!');
-    } else if (playerPoints < 21){
+    } else if (playerPoints < 21) {
       $('#messages').text('Hit Again');
-    } else if (playerPoints > 21){
+    } else if (playerPoints > 21) {
       $('#messages').text('You Lose');
     } else {
       $('#messages').text('New Game?')
     }
   }
   updateScore();
+
+
+
 
 
   $('#deal-button').click(function() {
@@ -89,9 +98,10 @@ $(document).ready(function() {
     var img2 = getCardImageUrl(card2);
     $('#dealer-hand').html('');
     updateScore();
-    if (calculatePoints(dealerHand) > 21){
+    if (calculatePoints(dealerHand) > 21) {
       $('#messages').text('Dealer Busts, You Win!')
     }
+    
 
     $('#dealer-hand').append(`<img src='${img1}'>`);
     $('#dealer-hand').append(`<img src='${img2}'>`);
@@ -123,7 +133,9 @@ $(document).ready(function() {
   })
 
   $('#stand-button').click(function() {
+    $('#messages').text('New Game?')
     updateScore();
+    gameOver();
 
   })
 });
