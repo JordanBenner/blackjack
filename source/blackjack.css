@@ -20,7 +20,7 @@ body {
 .hand {
   padding: 10px;
   border-radius: 3px;
-  height: 100px;
+  height: 120px;
   background: #02b229;
   margin-bottom: 10px;
   background-color: transparent;
@@ -32,7 +32,7 @@ body {
 }
 
 .hand img {
-  width: 57px;
+  width: 80px;
   display: block;
   float: left;
   margin-left: 5px;
@@ -52,13 +52,14 @@ body {
 .buttons button {
   border: 1px solid #666;
   border-radius: 5px;
-  background: linear-gradient(#eee, #ccc);
+  background: linear-gradient(#666, #222);
   font-size: 1em;
   padding: 5px 10px;
+  color: white;
 }
 
 .buttons button:hover {
-  box-shadow: 0px 1px 1px black;
+  box-shadow: 0px 2px 2px black;
 }
 
 .buttons button:focus {
@@ -66,8 +67,8 @@ body {
 }
 
 .buttons button:active {
-  color: white;
-  background: linear-gradient(#666, #222);
+  color: black;
+  background: linear-gradient(#eee, #ccc);
   border: 1px solid black;
 }
 
