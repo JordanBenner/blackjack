@@ -94,6 +94,7 @@ $(document).ready(function() {
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
     if (playerHand === 21){
+
       $('#messages').text('You Win!');
     } else if (playerHand < 21){
         $('messages').text('Hit Again');
@@ -112,11 +113,11 @@ $(document).ready(function() {
   })
 
   $('#stand-button').click(function() {
-    if ( < 17){
+    if (dealerPoints < playerPoints){
       $('#messages').text('You Bust!');
     }
 
-  });
+  })
 
 
 
