@@ -42,7 +42,7 @@ $(document).ready(function() {
     } else if (card.point === 13) {
       cardName = 'king';
     } else {
-      cardName = card.point;
+      cardName = card.point
     }
     return 'images/' + cardName + '_of_' + card.suit + '.png';
   }
