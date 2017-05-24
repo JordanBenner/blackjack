@@ -43,7 +43,7 @@ $(document).ready(function() {
     return 'images/' + cardName + '_of_' + card.suit + '.png';
   }
 
-  function calculatePoints(cards) {
+  function calculatePoints(card) {
     cards = cards.slice(0);
     cards.sort(function(a, b) {
       return b.point - a.point;
@@ -91,13 +91,16 @@ $(document).ready(function() {
     playerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
-    
-    $('#player-hand-hand').append(`<img src='${img1}'>`);
+
+    $('#player-hand').append(`<img src='${img1}'>`);
     $('#player-hand').append(`<img src='${img2}'>`);
 
   })
 
   $('#stand-button').click(function() {
+    if (point <= 17){
+      $('#messages').text('You Bust!');
+    }
 
   });
 
