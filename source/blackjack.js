@@ -46,7 +46,7 @@ $(document).ready(function() {
   function calculatePoints(card) {
     cards = cards.slice(0);
     cards.sort(function(a, b) {
-      return b.point - a.point;
+      return b.point + a.point;
     });
     return cards.reduce(function(sum, card) {
       var point = card.point;
@@ -75,6 +75,8 @@ $(document).ready(function() {
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
 
+    if (dealerHand <= 21)
+
     $('#dealer-hand').append(`<img src='${img1}'>`);
     $('#dealer-hand').append(`<img src='${img2}'>`);
 
@@ -91,6 +93,18 @@ $(document).ready(function() {
     playerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
+    if (playerHand === 21){
+      $('#messages').text('You Win!');
+    } else if (playerHand < 21){
+        $('messages').text('Hit Again');
+      } else if (playerHand > 21){
+        $('messages').text('You Lose');
+      } else {
+        $('messages').text('New Game?')
+      }
+
+
+
 
     $('#player-hand').append(`<img src='${img1}'>`);
     $('#player-hand').append(`<img src='${img2}'>`);
@@ -98,7 +112,7 @@ $(document).ready(function() {
   })
 
   $('#stand-button').click(function() {
-    if (point <= 17){
+    if ( < 17){
       $('#messages').text('You Bust!');
     }
 
