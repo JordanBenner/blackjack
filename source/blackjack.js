@@ -51,7 +51,7 @@ $(document).ready(function() {
     var total_points = 0;
     cards.forEach(function(card) {
       if (card.point > 10) {
-        total_points += 10;
+        total_points += 10
       } else if (card.point === 1 && total_points < 11) {
         total_points += 11;
       } else {
