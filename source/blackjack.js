@@ -1,6 +1,10 @@
 var numbers = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
 var suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
 var deck = [];
+var dealerHand = [];
+var playerHand = [];
+var dealerPoints = 0;
+var playerPoints = 0;
 
 for (let i = 0; i < suits.length; i++) {
   for (let j = 0; j < numbers.length; j++) {
@@ -43,21 +47,19 @@ $(document).ready(function() {
     return 'images/' + cardName + '_of_' + card.suit + '.png';
   }
 
-  function calculatePoints(card) {
-    cards = cards.slice(0);
-    cards.sort(function(a, b) {
-      return b.point + a.point;
+  function calculatePoints(cards) {
+    var total_points = 0;
+    cards.forEach(function (card) {
+      if (card.point > 10) {
+        total_points += 10;
+      } else if (card.point === 1 && total_points < 11) {
+        total_points += 11;
+      } else {
+        total_points += card.point;
+      }
     });
-    return cards.reduce(function(sum, card) {
-      var point = card.point;
-      if (point > 10) {
-        point = 10;
-      }
-      if (point === 1 && sum < 11) {
-        point = 11;
-      }
-      return sum + point;
-    }, 0);
+
+    return total_points;
   }
 
   function updateScore() {
@@ -65,7 +67,18 @@ $(document).ready(function() {
     $('#dealer-points').text(dealerPoints);
     var playerPoints = calculatePoints(playerHand);
     $('#player-points').text(playerPoints);
+
+    if (playerPoints === 21) {
+      $('#messages').text('You Win!');
+    } else if (playerPoints < 21){
+      $('#messages').text('Hit Again');
+    } else if (playerPoints > 21){
+      $('#messages').text('You Lose');
+    } else {
+      $('#messages').text('New Game?')
+    }
   }
+  updateScore();
 
 
   $('#deal-button').click(function() {
@@ -74,8 +87,11 @@ $(document).ready(function() {
     dealerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
-
-    if (dealerHand <= 21)
+    $('#dealer-hand').html('');
+    updateScore();
+    if (calculatePoints(dealerHand) > 21){
+      $('#messages').text('Dealer Busts, You Win!')
+    }
 
     $('#dealer-hand').append(`<img src='${img1}'>`);
     $('#dealer-hand').append(`<img src='${img2}'>`);
@@ -84,25 +100,19 @@ $(document).ready(function() {
 
   $('#hit-button').click(function() {
     var card = deck.pop();
+    playerHand.push(card);
+    updateScore();
     $('#player-hand').append(`<img src='images/${card.card_number}_of_${card.suit}.png'>`);
   });
 
-  $('#player-hand').click(function() {
+  $('#deal-button').click(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
     playerHand = [card1, card2];
     var img1 = getCardImageUrl(card1);
     var img2 = getCardImageUrl(card2);
-    if (playerHand === 21){
-
-      $('#messages').text('You Win!');
-    } else if (playerHand < 21){
-        $('messages').text('Hit Again');
-      } else if (playerHand > 21){
-        $('messages').text('You Lose');
-      } else {
-        $('messages').text('New Game?')
-      }
+    $('#player-hand').html('');
+    updateScore();
 
 
 
@@ -113,12 +123,7 @@ $(document).ready(function() {
   })
 
   $('#stand-button').click(function() {
-    if (dealerPoints < playerPoints){
-      $('#messages').text('You Bust!');
-    }
+    updateScore();
 
   })
-
-
-
 });
