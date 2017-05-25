@@ -87,9 +87,6 @@ $(document).ready(function() {
   updateScore();
 
 
-
-
-
   $('#deal-button').click(function() {
     var card1 = deck.pop();
     var card2 = deck.pop();
@@ -125,8 +122,6 @@ $(document).ready(function() {
     updateScore();
 
 
-
-
     $('#player-hand').append(`<img src='${img1}'>`);
     $('#player-hand').append(`<img src='${img2}'>`);
 
@@ -149,7 +144,7 @@ $(document).ready(function() {
     $('#player-points').text('');
     $('#dealer-points').text('');
     setupNewGame();
-  });
+  })
 
   function setupNewGame() {
     deck = newDeck();
@@ -158,16 +153,17 @@ $(document).ready(function() {
     playerHand = [];
   }
 
-});
-
-function newDeck() {
-  var cards = [];
-  for (var i = 1; i <= 13; i++) {
-    cards.push({ point: i, suit: 'spades' }); // change to Card constructor
-    cards.push({ point: i, suit: 'hearts' });
-    cards.push({ point: i, suit: 'clubs' });
-    cards.push({ point: i, suit: 'diamonds' });
+  function newDeck() {
+    var cards = [];
+    for (var i = 1; i <= 13; i++) {
+      cards.push({ point: i, suit: 'spades' });
+      cards.push({ point: i, suit: 'hearts' });
+      cards.push({ point: i, suit: 'clubs' });
+      cards.push({ point: i, suit: 'diamonds' });
+    }
+    return cards;
   }
-  return cards;
-}
+
+
+
 });
