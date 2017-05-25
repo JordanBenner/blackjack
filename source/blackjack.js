@@ -77,7 +77,7 @@ $(document).ready(function() {
     if (playerPoints === 21) {
       $('#messages').text('You Win!');
     } else if (playerPoints < 21) {
-      $('#messages').text('Hit Again');
+      $('#messages').text('Hit Again?');
     } else if (playerPoints > 21) {
       $('#messages').text('You Lose');
     } else {
@@ -138,4 +138,36 @@ $(document).ready(function() {
     gameOver();
 
   })
+  $('#play-again').click(function() {
+    $('#deal-button').show();
+    $('#hit-button').show();
+    $('#stand-button').show();
+    $('#play-again').hide();
+    $('#player-hand').html('');
+    $('#dealer-hand').html('');
+    $('#messages').text('');
+    $('#player-points').text('');
+    $('#dealer-points').text('');
+    setupNewGame();
+  });
+
+  function setupNewGame() {
+    deck = newDeck();
+    deck = _.shuffle(deck);
+    dealerHand = [];
+    playerHand = [];
+  }
+
+});
+
+function newDeck() {
+  var cards = [];
+  for (var i = 1; i <= 13; i++) {
+    cards.push({ point: i, suit: 'spades' }); // change to Card constructor
+    cards.push({ point: i, suit: 'hearts' });
+    cards.push({ point: i, suit: 'clubs' });
+    cards.push({ point: i, suit: 'diamonds' });
+  }
+  return cards;
+}
 });
