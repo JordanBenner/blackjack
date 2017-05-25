@@ -129,6 +129,7 @@ $(document).ready(function() {
 
   $('#stand-button').click(function() {
     $('#messages').text('New Game?')
+    if (dealerHand > playerHand)
     updateScore();
     gameOver();
 
